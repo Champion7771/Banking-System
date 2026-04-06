@@ -27,7 +27,7 @@ const limiter = rateLimit({
 
 app.use(cors());
 app.use(express.json());
-// app.use(limiter);
+app.use(limiter);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/records", recordRoutes);

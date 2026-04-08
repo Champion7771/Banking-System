@@ -58,7 +58,7 @@ function Navbar() {
       {/* RIGHT - User Info + Logout */}
       <div className="flex items-center gap-3">
         <span className="text-sm">
-          <span className="font-semibold">{user?.name || "Guest"}</span>
+          <span className="font-semibold">{user?.name ||""}</span>
           <span className="ml-1 bg-green-500 text-xs px-2 py-0.5 rounded-full capitalize">
             {user?.role || "none"}
           </span>

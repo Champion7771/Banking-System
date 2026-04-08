@@ -13,19 +13,19 @@ function Records() {
   const [total, setTotal] = useState(0);
   const limit = 5;
 
-  const fetchRecords = async () => {
-    try {
-      const res = await API.get("/records", {
-        params: { search, type, page, limit, startDate, endDate }
-      });
-      setRecords(res.data.data || []);
-      setTotal(res.data.total || 0);
-    } catch (err) {
-      setError("Failed to fetch records");
-    }
-  };
-
+  
   useEffect(() => {
+    const fetchRecords = async () => {
+      try {
+        const res = await API.get("/records", {
+          params: { search, type, page, limit, startDate, endDate }
+        });
+        setRecords(res.data.data || []);
+        setTotal(res.data.total || 0);
+      } catch (err) {
+        setError("Failed to fetch records");
+      }
+    };
     fetchRecords();
   }, [search, type, page, startDate, endDate]);
 
@@ -72,7 +72,7 @@ function Records() {
           <select
             value={type}
             onChange={(e) => { setType(e.target.value); setPage(1); }}
-            className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 "
           >
             <option value="">All Types</option>
             <option value="income">Income</option>

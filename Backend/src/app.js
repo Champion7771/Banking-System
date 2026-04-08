@@ -18,7 +18,7 @@ const limiter = rateLimit({
   
   handler: (req, res) => {
     res.status(429).json({
-      success: false,
+      success: false, 
       error: "RATE_LIMIT_EXCEEDED",
       message: "Too many requests, try again after 1 minute"
     });
@@ -27,15 +27,16 @@ const limiter = rateLimit({
 
 app.use(cors());
 app.use(express.json());
-app.use(limiter);
+// app.use(limiter); # Disabled for testing, enable in production
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/records", recordRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use(errorHandler);
 
-// app.get("/api/protected", protect, (req, res) => {
-//   res.json({ message: "This is a protected route", user: req.user });
-// });
+app.get("/health", (req, res) => {
+  res.json({ message: "API is running smoothly " });
+});
+
 
 module.exports = app;
